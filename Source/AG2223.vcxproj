@@ -184,6 +184,7 @@
     <ClCompile Include="Geometry\AABB.cpp" />
     <ClCompile Include="Geometry\Circle.cpp" />
     <ClCompile Include="Geometry\Edge3d.cpp" />
+    <ClCompile Include="Geometry\KDTree.cpp" />
     <ClCompile Include="Geometry\Line.cpp" />
     <ClCompile Include="Geometry\Line3d.cpp" />
     <ClCompile Include="Geometry\Plane.cpp" />
@@ -327,6 +328,7 @@
     <ClInclude Include="Geometry\Edge3d.h" />
     <ClInclude Include="Geometry\InclDraw3D.h" />
     <ClInclude Include="Geometry\InclGeom3D.h" />
+    <ClInclude Include="Geometry\KDTree.h" />
     <ClInclude Include="Geometry\Line.h" />
     <ClInclude Include="Geometry\Line3d.h" />
     <ClInclude Include="Geometry\Plane.h" />

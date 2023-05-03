@@ -258,6 +258,9 @@
     <ClCompile Include="Geometry\Edge3d.cpp">
       <Filter>Archivos de origen\Geometry</Filter>
     </ClCompile>
+    <ClCompile Include="Geometry\KDTree.cpp">
+      <Filter>Archivos de origen\Geometry</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fonts\lato.hpp">
@@ -490,6 +493,9 @@
     </ClInclude>
     <ClInclude Include="Rendering\DrawPlane.h">
       <Filter>Archivos de encabezado\RenderAG</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\KDTree.h">
+      <Filter>Archivos de encabezado\Geometry</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
