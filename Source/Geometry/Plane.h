@@ -50,6 +50,8 @@ protected:
 	Vect3d _a, _b, _c;  
 
 public:
+
+	Plane();
 	/**
 	*
 	*	@param p in pi = p + u * lambda + v * mu -> r from the points (R, S, T).

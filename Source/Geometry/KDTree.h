@@ -1,7 +1,7 @@
 #pragma once
 #include "PointCloud.h"
 #include "PointCloud3d.h"
-
+#include "Nodo.h"
 
 
 
@@ -9,6 +9,7 @@ class KDTree{
 
 	private:
 
+		Nodo raiz;
 
 	public:
 		/**
@@ -32,5 +33,9 @@ class KDTree{
 		*	@brief Destructor.
 		*/
 		virtual ~KDTree();
+
+		Nodo construir3DTree(std::vector<Vect3d> puntos, int nivel);
+
+		Nodo construir2DTree(std::vector<Point> puntos, int nivel);
 
 };

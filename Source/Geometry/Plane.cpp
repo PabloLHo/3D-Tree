@@ -3,6 +3,10 @@
 #include "BasicGeometry.h"
 
 
+Plane::Plane() {
+
+}
+
 Plane::Plane(Vect3d & p, Vect3d & u, Vect3d & v, bool arePoints)
 {
 	if (!arePoints)			// Vectors: pi = p + u * lambda + v * mu 

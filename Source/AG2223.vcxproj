@@ -187,6 +187,7 @@
     <ClCompile Include="Geometry\KDTree.cpp" />
     <ClCompile Include="Geometry\Line.cpp" />
     <ClCompile Include="Geometry\Line3d.cpp" />
+    <ClCompile Include="Geometry\Nodo.cpp" />
     <ClCompile Include="Geometry\Plane.cpp" />
     <ClCompile Include="Geometry\Point.cpp" />
     <ClCompile Include="Geometry\PointCloud.cpp" />
@@ -331,6 +332,7 @@
     <ClInclude Include="Geometry\KDTree.h" />
     <ClInclude Include="Geometry\Line.h" />
     <ClInclude Include="Geometry\Line3d.h" />
+    <ClInclude Include="Geometry\Nodo.h" />
     <ClInclude Include="Geometry\Plane.h" />
     <ClInclude Include="Geometry\Point.h" />
     <ClInclude Include="Geometry\PointCloud.h" />

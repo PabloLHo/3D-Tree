@@ -20,3 +20,7 @@ KDTree::KDTree(const KDTree& kdTree){
 KDTree::~KDTree()
 {
 }
+
+Nodo KDTree::construir3DTree(std::vector<Vect3d> puntos, int nivel) {
+
+}
