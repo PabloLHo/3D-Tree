@@ -2,3 +2,7 @@
 # https://help.github.com/articles/ignoring-files
 # Example .gitignore files: https://github.com/github/gitignore
 /.vs/
+/Source/x64/
+/x64/
+/Source/x86/
+/x86/
