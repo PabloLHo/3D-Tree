@@ -261,7 +261,10 @@
     <ClCompile Include="Geometry\KDTree.cpp">
       <Filter>Archivos de origen\Geometry</Filter>
     </ClCompile>
-    <ClCompile Include="Geometry\Nodo.cpp">
+    <ClCompile Include="Geometry\Nodo3D.cpp">
+      <Filter>Archivos de origen\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry\Nodo2d.cpp">
       <Filter>Archivos de origen\Geometry</Filter>
     </ClCompile>
   </ItemGroup>
@@ -500,7 +503,10 @@
     <ClInclude Include="Geometry\KDTree.h">
       <Filter>Archivos de encabezado\Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Geometry\Nodo.h">
+    <ClInclude Include="Geometry\Nodo3D.h">
+      <Filter>Archivos de encabezado\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\Nodo2d.h">
       <Filter>Archivos de encabezado\Geometry</Filter>
     </ClInclude>
   </ItemGroup>

@@ -17,6 +17,31 @@ void AlgGeom::SceneContent::buildScenario()
     vec3 minBoundaries = vec3(-3.0f, -.4, -3.0f), maxBoundaries = vec3(-minBoundaries);
 
 
+    int tam = 10;
+    std::vector<Vect3d> points;
+    for (int i = 0; i < tam; i++) {
+        Vect3d point(RandomUtilities::getUniformRandom(minBoundaries.x, maxBoundaries.x),
+            RandomUtilities::getUniformRandom(minBoundaries.y, maxBoundaries.y), RandomUtilities::getUniformRandom(minBoundaries.z, maxBoundaries.z));
+        points.push_back(point);
+        std::cout << "(" << point.getX() << ", " << point.getY() << ", " << point.getZ() << ")" << std::endl;
+    }
+
+    PointCloud3d *nubeP = new PointCloud3d(points);
+    this->addNewModel((new DrawPointCloud(*nubeP))->overrideModelName()->setPointColor(vec3(1,0,0)));
+
+
+    KDTree* arbol3D = new KDTree(nubeP);
+
+
+    //PointCloud* nubeP2 = new PointCloud(tam, maxBoundaries.x, maxBoundaries.y);
+    //this->addNewModel((new DrawPointCloud(*nubeP2))->overrideModelName()->setPointColor(vec3(1, 0, 0)));
+
+
+    //KDTree* arbol2D = new KDTree(nubeP2);
+
+
+    //delete nubeP;
+
 }
 
 void AlgGeom::SceneContent::buildCamera(uint16_t width, uint16_t height)

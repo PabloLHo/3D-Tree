@@ -27,3 +27,5 @@
 #include "TriangleModel.h"
 #include "Vect3d.h"
 #include "TriangleModel.h"
+#include "KDTree.h"
+#include "Nodo3D.h"
