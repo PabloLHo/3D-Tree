@@ -14,6 +14,9 @@ class KDTree{
 		Nodo3d raiz3D;
 		Nodo2d raiz2D;
 
+		std::vector<Plane> planos;
+		std::vector<SegmentLine> segmentos;
+
 	public:
 		/**
 		*	@brief Default constructor.
@@ -50,5 +53,8 @@ class KDTree{
 
 		Plane determinarPlanoDiv(int nivel, double coordenada);
 		SegmentLine determinarSegmentoDiv(int nivel, double coordenada);
+
+		std::vector<Plane> getPlanos() { return planos; };
+		std::vector<SegmentLine> getSegmentos() { return segmentos; };
 
 };

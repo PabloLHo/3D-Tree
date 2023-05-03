@@ -32,6 +32,13 @@ void AlgGeom::SceneContent::buildScenario()
 
     KDTree* arbol3D = new KDTree(nubeP);
 
+    std::vector<Plane> planos = arbol3D->getPlanos();
+
+    //Representarlos directamente todos
+    for (int i = 0; i < planos.size(); i++) {
+        this->addNewModel((new DrawPlane(planos[i]))->overrideModelName());
+    }
+
 
     //PointCloud* nubeP2 = new PointCloud(tam, maxBoundaries.x, maxBoundaries.y);
     //this->addNewModel((new DrawPointCloud(*nubeP2))->overrideModelName()->setPointColor(vec3(1, 0, 0)));
@@ -39,6 +46,13 @@ void AlgGeom::SceneContent::buildScenario()
 
     //KDTree* arbol2D = new KDTree(nubeP2);
 
+    //std::vector<SegmentLine> segmentos = arbol2D->getSegmentos();
+
+    //Representarlos directamente todos
+
+    //for (int i = 0; i < segmentos.size(); i++) {
+    //    this->addNewModel((new DrawSegment(segmentos[i]))->overrideModelName());
+    //}
 
     //delete nubeP;
 

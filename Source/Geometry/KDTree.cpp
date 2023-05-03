@@ -59,6 +59,8 @@ Nodo3d KDTree::construir3DTree(std::vector<Vect3d> puntos, int nivel) {
 
 		Plane p = determinarPlanoDiv(nivel, coordenada);
 
+		planos.push_back(p);
+
 		Nodo3dIzq = construir3DTree(l1, nivel + 1);
 		Nodo3dDrch = construir3DTree(l2, nivel + 1);
 		return Nodo3d(nivel, Nodo3dIzq, Nodo3dDrch, p, coordenada);
@@ -94,11 +96,12 @@ Nodo2d KDTree::construir2DTree(std::vector<Point> puntos, int nivel) {
 		std::copy(puntos.begin(), puntos.begin() + mitad + 1, back_inserter(l1));
 		std::copy(puntos.begin() + mitad + 1, puntos.end(), back_inserter(l2));
 
-		SegmentLine p = determinarSegmentoDiv(nivel, coordenada);
+		SegmentLine s = determinarSegmentoDiv(nivel, coordenada);
+		segmentos.push_back(s);
 
 		nodoIzq = construir2DTree(l1, nivel + 1);
 		nodoDrch = construir2DTree(l2, nivel + 1);
-		return Nodo2d(nivel, nodoIzq, nodoDrch, p, coordenada);
+		return Nodo2d(nivel, nodoIzq, nodoDrch, s, coordenada);
 
 	}
 	else
