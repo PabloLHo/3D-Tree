@@ -41,7 +41,7 @@ class Nodo2d
 		int getNivel() { return nivel; };
 		Nodo2d* getDrch() { return drch; };
 		Nodo2d* getIzq() { return izq; };
-		SegmentLine getPlane() { return lineaDivisoria; };
+		SegmentLine getSegmento() { return lineaDivisoria; };
 		Point getPunto() { if (hoja) return punto; else throw("error"); }
 
 		void asignarPunto(Point punto);
