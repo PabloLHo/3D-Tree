@@ -74,17 +74,18 @@ Nodo2d KDTree::construir2DTree(std::vector<Point> puntos, int nivel) {
 	if (puntos.size() > 1) {
 
 		Nodo2d nodoIzq, nodoDrch;
-		int mitad = puntos.size() / 2 - 1;
-		double coordenada;
 
+		double coordenada;
+		int mitad = puntos.size() / 2 - 1;;
 		switch (nivel % 2) {
-			//División por X
+		//División por X
 		case 0:
 			std::sort(puntos.begin(), puntos.end(), &comp2X);
 			coordenada = puntos[mitad].getX();
 			break;
 			//Divisón por Y
 		case 1:
+
 			std::sort(puntos.begin(), puntos.end(), &comp2Y);
 			coordenada = puntos[mitad].getY();
 			break;
@@ -95,7 +96,7 @@ Nodo2d KDTree::construir2DTree(std::vector<Point> puntos, int nivel) {
 		std::copy(puntos.begin() + mitad + 1, puntos.end(), back_inserter(l2));
 
 		SegmentLine p = determinarSegmentoDiv(nivel, coordenada);
-
+		std::cout << nivel << " - division: " << coordenada << std::endl;
 		nodoIzq = construir2DTree(l1, nivel + 1);
 		nodoDrch = construir2DTree(l2, nivel + 1);
 		return Nodo2d(nivel, nodoIzq, nodoDrch, p, coordenada);
@@ -176,8 +177,8 @@ SegmentLine KDTree::determinarSegmentoDiv(int nivel, double coordenada) {
 
 	int aleatorio = 5;
 
-	Point v1((1 - eje) * coordenada + eje * aleatorio, eje * coordenada + (eje - 1) * aleatorio);
-	Point v2((1 - eje) * coordenada + eje * aleatorio, eje * coordenada + (eje - 1) * aleatorio);
+	Point v1( (1 - eje) * coordenada + eje * aleatorio, eje * coordenada + (1 - eje) * aleatorio);
+	Point v2( (1 - eje) * coordenada + eje * aleatorio, eje * coordenada + (1 - eje) * aleatorio);
 
 
 	return SegmentLine(v1,v2);

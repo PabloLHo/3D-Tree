@@ -18,26 +18,29 @@ void AlgGeom::SceneContent::buildScenario()
 
 
     int tam = 10;
-    std::vector<Vect3d> points;
+    //std::vector<Vect3d> points;
+    //for (int i = 0; i < tam; i++) {
+    //    Vect3d point(RandomUtilities::getUniformRandom(minBoundaries.x, maxBoundaries.x),
+    //        RandomUtilities::getUniformRandom(minBoundaries.y, maxBoundaries.y), RandomUtilities::getUniformRandom(minBoundaries.z, maxBoundaries.z));
+    //    points.push_back(point);
+    //    std::cout << "(" << point.getX() << ", " << point.getY() << ", " << point.getZ() << ")" << std::endl;
+    //}
+
+    //PointCloud3d *nubeP = new PointCloud3d(points);
+    //this->addNewModel((new DrawPointCloud(*nubeP))->overrideModelName()->setPointColor(vec3(1,0,0)));
+
+
+    //KDTree* arbol3D = new KDTree(nubeP);
+
+
+    PointCloud* nubeP2 = new PointCloud(tam, maxBoundaries.x, maxBoundaries.y);
     for (int i = 0; i < tam; i++) {
-        Vect3d point(RandomUtilities::getUniformRandom(minBoundaries.x, maxBoundaries.x),
-            RandomUtilities::getUniformRandom(minBoundaries.y, maxBoundaries.y), RandomUtilities::getUniformRandom(minBoundaries.z, maxBoundaries.z));
-        points.push_back(point);
-        std::cout << "(" << point.getX() << ", " << point.getY() << ", " << point.getZ() << ")" << std::endl;
+        std::cout << "(" << nubeP2->getPoint(i).getX() << ", " << nubeP2->getPoint(i).getY() << ")" << std::endl;
     }
-
-    PointCloud3d *nubeP = new PointCloud3d(points);
-    this->addNewModel((new DrawPointCloud(*nubeP))->overrideModelName()->setPointColor(vec3(1,0,0)));
+    this->addNewModel((new DrawPointCloud(*nubeP2))->overrideModelName()->setPointColor(vec3(1, 0, 0)));
 
 
-    KDTree* arbol3D = new KDTree(nubeP);
-
-
-    //PointCloud* nubeP2 = new PointCloud(tam, maxBoundaries.x, maxBoundaries.y);
-    //this->addNewModel((new DrawPointCloud(*nubeP2))->overrideModelName()->setPointColor(vec3(1, 0, 0)));
-
-
-    //KDTree* arbol2D = new KDTree(nubeP2);
+    KDTree* arbol2D = new KDTree(nubeP2);
 
 
     //delete nubeP;
