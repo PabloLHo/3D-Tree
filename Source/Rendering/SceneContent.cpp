@@ -32,19 +32,27 @@ void AlgGeom::SceneContent::buildScenario()
 
     //KDTree* arbol3D = new KDTree(nubeP);
 
-
-    PointCloud* nubeP2 = new PointCloud(tam, maxBoundaries.x, maxBoundaries.y);
+    std::vector<Point> puntos_2;
+    puntos_2.push_back(Point(4,4));
+    puntos_2.push_back(Point(3,1));
+    puntos_2.push_back(Point(11,1));
+    puntos_2.push_back(Point(12.62,1.98));
+    puntos_2.push_back(Point(11.98,4.22));
+    puntos_2.push_back(Point(10,3.36));
+    puntos_2.push_back(Point(9,2.5));
+    puntos_2.push_back(Point(7.98,3.56));
+    puntos_2.push_back(Point(6,2));
+    puntos_2.push_back(Point(5,3));
+    //PointCloud* nubeP2 = new PointCloud(tam, maxBoundaries.x, maxBoundaries.y);
+    PointCloud* nubeP2 = new PointCloud(puntos_2);
     for (int i = 0; i < tam; i++) {
         std::cout << "(" << nubeP2->getPoint(i).getX() << ", " << nubeP2->getPoint(i).getY() << ")" << std::endl;
     }
     this->addNewModel((new DrawPointCloud(*nubeP2))->overrideModelName()->setPointColor(vec3(1, 0, 0)));
 
 
-    //PointCloud* nubeP2 = new PointCloud(tam, maxBoundaries.x, maxBoundaries.y);
-    //this->addNewModel((new DrawPointCloud(*nubeP2))->overrideModelName()->setPointColor(vec3(1, 0, 0)));
 
-
-    //KDTree* arbol2D = new KDTree(nubeP2);
+    KDTree* arbol2D = new KDTree(nubeP2);
 
     //std::vector<SegmentLine> segmentos = arbol2D->getSegmentos();
 

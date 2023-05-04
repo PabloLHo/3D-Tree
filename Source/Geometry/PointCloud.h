@@ -42,6 +42,8 @@ public:
 	*/
 	PointCloud(int size, float max_x, float max_y);
 
+	PointCloud(std::vector<Point> puntos);
+
 	/**
 	*	@brief Constructor of a point cloud from the coordinates of points stored in file.
 	*/

@@ -57,4 +57,13 @@ class KDTree{
 		std::vector<Plane> getPlanos() { return planos; };
 		std::vector<SegmentLine> getSegmentos() { return segmentos; };
 
+		Nodo2d* buscarPunto(Point p);
+		Nodo3d* buscarPunto(Vect3d p);
+
+		void insertarPunto(Point p);
+		void insertarPunto(Vect3d p);
+
+		void eliminarPunto(Point p);
+		void eliminarPunto(Vect3d p);
+
 };

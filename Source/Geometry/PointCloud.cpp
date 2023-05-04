@@ -13,6 +13,14 @@ PointCloud::PointCloud(int size, float max_x, float max_y)
 	}
 }
 
+
+PointCloud::PointCloud(std::vector<Point> puntos)
+{
+	this->_points = puntos;
+}
+
+
+
 PointCloud::PointCloud(const std::string& filename)
 {
 	std::ifstream infile(filename + ".bin", std::ifstream::binary);

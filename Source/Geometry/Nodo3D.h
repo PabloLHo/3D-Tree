@@ -38,10 +38,13 @@ class Nodo3d
 		virtual ~Nodo3d();
 
 		int getNivel() { return nivel; };
+		double getDivisoria() { return coordenadaDivisoria; };
 		Nodo3d* getDrch() { return drch; };
 		Nodo3d* getIzq() { return izq; };
 		Plane getPlane() { return planoDivisorio; };
 		Vect3d getPunto() { if (hoja) return punto3D; else throw("error"); }
+
+		bool esHoja() { return hoja; };
 
 		void asignarPunto(Vect3d punto);
 		void asignarIzq(Nodo3d Nodo3dIzq);

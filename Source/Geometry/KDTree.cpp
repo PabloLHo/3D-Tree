@@ -30,7 +30,11 @@ Nodo3d KDTree::construir3DTree(std::vector<Vect3d> puntos, int nivel) {
 	if (puntos.size() > 1) {
 
 		Nodo3d Nodo3dIzq, Nodo3dDrch;
-		int mitad = puntos.size() / 2 - 1;
+		int mitad;
+		if (puntos.size() % 2 == 0)
+			mitad = puntos.size() / 2 - 1;
+		else
+			mitad = puntos.size() / 2;
 		double coordenada;
 
 		switch (nivel % 3) {
@@ -78,7 +82,13 @@ Nodo2d KDTree::construir2DTree(std::vector<Point> puntos, int nivel) {
 		Nodo2d nodoIzq, nodoDrch;
 
 		double coordenada;
-		int mitad = puntos.size() / 2 - 1;;
+		int mitad;
+
+		if (puntos.size() % 2 == 0)
+			mitad = puntos.size() / 2 - 1;
+		else
+			mitad = puntos.size() / 2;
+
 		switch (nivel % 2) {
 		//División por X
 		case 0:
@@ -87,7 +97,6 @@ Nodo2d KDTree::construir2DTree(std::vector<Point> puntos, int nivel) {
 			break;
 			//Divisón por Y
 		case 1:
-
 			std::sort(puntos.begin(), puntos.end(), &comp2Y);
 			coordenada = puntos[mitad].getY();
 			break;
@@ -187,4 +196,73 @@ SegmentLine KDTree::determinarSegmentoDiv(int nivel, double coordenada) {
 
 
 	return SegmentLine(v1,v2);
+}
+
+
+Nodo2d* KDTree::buscarPunto(Point p) {
+	
+	Nodo2d *actual = new Nodo2d(raiz2D);
+	int nivel = 0;
+
+	while (!actual->esHoja()) {
+		switch (nivel % 2) {
+			//División por X
+		case 0:
+			if (p.getX() <= actual->getDivisoria())
+				actual = actual->getIzq();
+			else
+				actual = actual->getDrch();
+			break;
+			//Divisón por Y
+		case 1:
+			if (p.getY() <= actual->getDivisoria())
+				actual = actual->getIzq();
+			else
+				actual = actual->getDrch();
+			break;
+		}
+
+		nivel++;
+	}
+
+	if (actual->getPunto().equal(p))
+		return actual;
+	return nullptr;
+}
+
+Nodo3d* KDTree::buscarPunto(Vect3d p) {
+
+	Nodo3d* actual = new Nodo3d(raiz3D);
+	int nivel = 0;
+
+	while (!actual->esHoja()) {
+		switch (nivel % 3) {
+			//División por X
+		case 0:
+			if (p.getX() <= actual->getDivisoria())
+				actual = actual->getIzq();
+			else
+				actual = actual->getDrch();
+			break;
+			//Divisón por Y
+		case 1:
+			if (p.getY() <= actual->getDivisoria())
+				actual = actual->getIzq();
+			else
+				actual = actual->getDrch();
+			break;
+		case 2:
+			if (p.getZ() <= actual->getDivisoria())
+				actual = actual->getIzq();
+			else
+				actual = actual->getDrch();
+			break;
+		}
+
+		nivel++;
+	}
+
+	if (actual->getPunto() == p)
+		return actual;
+	return nullptr;
 }

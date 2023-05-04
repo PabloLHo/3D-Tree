@@ -39,10 +39,13 @@ class Nodo2d
 		virtual ~Nodo2d();
 
 		int getNivel() { return nivel; };
+		double getDivisoria() { return coordenadaDivisoria; };
 		Nodo2d* getDrch() { return drch; };
 		Nodo2d* getIzq() { return izq; };
 		SegmentLine getSegmento() { return lineaDivisoria; };
 		Point getPunto() { if (hoja) return punto; else throw("error"); }
+
+		bool esHoja() { return hoja; };
 
 		void asignarPunto(Point punto);
 		void asignarIzq(Nodo2d Nodo2dIzq);
