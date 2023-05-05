@@ -1,5 +1,6 @@
 #pragma once
 #include "SegmentLine.h"
+#include "AABB.h"
 
 
 class Nodo2d

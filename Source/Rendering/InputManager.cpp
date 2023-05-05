@@ -45,6 +45,9 @@ void AlgGeom::InputManager::buildMoveRelatedBuffers()
 	_eventKey[Events::SCREENSHOT]		= ivec2(GLFW_KEY_K, GLFW_KEY_L);
 	_eventKey[Events::TILT]				= ivec2(GLFW_KEY_T);
 	_eventKey[Events::TRUCK]			= ivec2(GLFW_KEY_D, GLFW_KEY_A);
+	_eventKey[Events::KDTREE]			= ivec2(GLFW_KEY_RIGHT_BRACKET, GLFW_KEY_SLASH);
+
+
 
 	_moves = std::vector<GLuint>(static_cast<size_t>(Events::NUM_EVENTS), 0);
 }
@@ -82,6 +85,7 @@ void AlgGeom::InputManager::processPressedKeyEvent(const int key, const int mods
 {
 	Renderer* renderer = Renderer::getInstance();
 	Camera* camera = renderer->getCamera();
+
 
 	if (key == _eventKey[Events::ALTER_POINT][0])
 	{
@@ -164,6 +168,14 @@ void AlgGeom::InputManager::processPressedKeyEvent(const int key, const int mods
 	else if (key == _eventKey[Events::SCREENSHOT][0])
 	{
 		this->pushScreenshotEvent(ScreenshotListener::ScreenshotEvent{ScreenshotListener::RGBA});
+	}
+	else if (key == _eventKey[Events::KDTREE][0])
+	{
+		Renderer::getInstance()->getEscena()->construir2DTree();
+	}
+	else if (key == _eventKey[Events::KDTREE][1])
+	{
+		Renderer::getInstance()->getEscena()->construir3DTree();
 	}
 }
 

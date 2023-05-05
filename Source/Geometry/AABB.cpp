@@ -5,6 +5,12 @@
 
 AABB::AABB()
 {
+
+	//_min = Vect3d(FLT_MIN, FLT_MIN, FLT_MIN);
+	//_max = Vect3d(FLT_MAX, FLT_MAX, FLT_MAX);
+	_max = Vect3d(100,100,100);
+	_min = Vect3d(-100,-100,-100);
+
 }
 
 AABB::AABB(const Vect3d & min, const Vect3d & max) : _min(min), _max(max)

@@ -55,6 +55,7 @@ namespace AlgGeom
 		void createModels();
 		void createShaderProgram();
 		Camera* getCamera() { return _content->_camera[_appState->_selectedCamera].get(); }
+		SceneContent* getEscena() { return _content; };
 		void prepareOpenGL(uint16_t width, uint16_t height, ApplicationState* appState);
 		void removeModel();
 		void render(float alpha = 1.0f, bool renderGui = true, bool bindScreenshoter = false);

@@ -10,6 +10,8 @@
 #include "RandomUtilities.h"
 
 
+
+
 // ----------------------------- BUILD YOUR SCENARIO HERE -----------------------------------
 
 void AlgGeom::SceneContent::buildScenario()
@@ -32,37 +34,19 @@ void AlgGeom::SceneContent::buildScenario()
 
     //KDTree* arbol3D = new KDTree(nubeP);
 
-    std::vector<Point> puntos_2;
-    puntos_2.push_back(Point(4,4));
-    puntos_2.push_back(Point(3,1));
-    puntos_2.push_back(Point(11,1));
-    puntos_2.push_back(Point(12.62,1.98));
-    puntos_2.push_back(Point(11.98,4.22));
-    puntos_2.push_back(Point(10,3.36));
-    puntos_2.push_back(Point(9,2.5));
-    puntos_2.push_back(Point(7.98,3.56));
-    puntos_2.push_back(Point(6,2));
-    puntos_2.push_back(Point(5,3));
-    //PointCloud* nubeP2 = new PointCloud(tam, maxBoundaries.x, maxBoundaries.y);
-    PointCloud* nubeP2 = new PointCloud(puntos_2);
-    for (int i = 0; i < tam; i++) {
-        std::cout << "(" << nubeP2->getPoint(i).getX() << ", " << nubeP2->getPoint(i).getY() << ")" << std::endl;
-    }
-    this->addNewModel((new DrawPointCloud(*nubeP2))->overrideModelName()->setPointColor(vec3(1, 0, 0)));
+    PointCloud* nubeP2 = new PointCloud(tam, maxBoundaries.x, maxBoundaries.y);
 
-
+    this->addNewModel((new DrawPointCloud(*nubeP2))->overrideModelName()->setPointColor(vec3(1, 0, 0))->setPointSize(8));
 
     KDTree* arbol2D = new KDTree(nubeP2);
 
-    //std::vector<SegmentLine> segmentos = arbol2D->getSegmentos();
+    segmentos = arbol2D->getSegmentos();
 
     //Representarlos directamente todos
-
     //for (int i = 0; i < segmentos.size(); i++) {
     //    this->addNewModel((new DrawSegment(segmentos[i]))->overrideModelName());
     //}
 
-    //delete nubeP;
 
 }
 
@@ -109,4 +93,26 @@ AlgGeom::Model3D* AlgGeom::SceneContent::getModel(Model3D::Component* component)
 	}
 
 	return nullptr;
+}
+
+void AlgGeom::SceneContent::construir2DTree() {
+
+    if (avance2D < segmentos.size()) {
+        this->addNewModel((new DrawSegment(segmentos[avance2D]))->overrideModelName());
+        avance2D++;
+    }
+    else
+        std::cout << "Fin construccion 2DTree" << std::endl;
+
+}
+
+void AlgGeom::SceneContent::construir3DTree() {
+
+    if (avance3D < planos.size()) {
+        this->addNewModel((new DrawPlane(planos[avance3D]))->overrideModelName());
+        avance3D++;
+    }
+    else
+        std::cout << "Fin construccion 3DTree" << std::endl;
+
 }

@@ -20,6 +20,8 @@
 #include "ApplicationState.h"
 #include "Camera.h"
 #include "Model3D.h"
+#include "SegmentLine.h"
+#include "Plane.h"
 
 namespace AlgGeom
 {
@@ -29,6 +31,11 @@ namespace AlgGeom
 		std::vector<std::unique_ptr<Camera>>	_camera;
 		std::vector<std::unique_ptr<Model3D>>	_model;
 
+		int avance2D = 0;
+		int avance3D = 0;
+		std::vector<SegmentLine> segmentos;
+		std::vector<Plane> planos;
+
 		SceneContent();
 		virtual ~SceneContent();
 
@@ -37,5 +44,9 @@ namespace AlgGeom
 		void buildCamera(uint16_t width, uint16_t height);
 		void buildScenario();
 		Model3D* getModel(Model3D::Component* component);
+
+		void construir2DTree();
+		void construir3DTree();
+
 	};
 }

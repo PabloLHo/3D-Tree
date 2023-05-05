@@ -4,6 +4,7 @@
 #include "Nodo3d.h"
 #include "Nodo2d.h"
 #include "SegmentLine.h"
+#include "AABB.h"
 
 
 
@@ -40,9 +41,9 @@ class KDTree{
 		*/
 		virtual ~KDTree();
 
-		Nodo3d construir3DTree(std::vector<Vect3d> puntos, int nivel);
+		Nodo3d construir3DTree(std::vector<Vect3d> puntos, int nivel, AABB limites);
 
-		Nodo2d construir2DTree(std::vector<Point> puntos, int nivel);
+		Nodo2d construir2DTree(std::vector<Point> puntos, int nivel, AABB limites);
 
 		static bool compX(const Vect3d& v1, const Vect3d& v2);
 		static bool compY(const Vect3d& v1, const Vect3d& v2);
@@ -51,8 +52,8 @@ class KDTree{
 		static bool comp2X(const Point& v1, const Point& v2);
 		static bool comp2Y(const Point& v1, const Point& v2);
 
-		Plane determinarPlanoDiv(int nivel, double coordenada);
-		SegmentLine determinarSegmentoDiv(int nivel, double coordenada);
+		Plane determinarPlanoDiv(int nivel, double coordenada, AABB limite);
+		SegmentLine determinarSegmentoDiv(int nivel, double coordenada, AABB limites);
 
 		std::vector<Plane> getPlanos() { return planos; };
 		std::vector<SegmentLine> getSegmentos() { return segmentos; };
