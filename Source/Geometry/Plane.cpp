@@ -23,7 +23,24 @@ Plane::Plane(Vect3d & p, Vect3d & u, Vect3d & v, bool arePoints)
 	}
 }
 
-Plane::Plane(const Plane & plane): _a(plane._a), _b(plane._b), _c(plane._c)
+Plane::Plane(Vect3d& p, Vect3d& u, Vect3d& v, Vect3d& w, bool arePoints)
+{
+	if (!arePoints)			// Vectors: pi = p + u * lambda + v * mu 
+	{
+		_a = p;
+		_b = u.add(_a);
+		_c = v.add(_a);
+	}
+	else
+	{						// 3 points in the plane
+		_a = p;
+		_b = u;
+		_c = v;
+		_d = w;
+	}
+}
+
+Plane::Plane(const Plane & plane): _a(plane._a), _b(plane._b), _c(plane._c), _d(plane._d)
 {
 }
 

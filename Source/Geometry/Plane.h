@@ -47,7 +47,7 @@ public:
 	};
 
 protected:
-	Vect3d _a, _b, _c;  
+	Vect3d _a, _b, _c, _d;  
 
 public:
 
@@ -60,6 +60,8 @@ public:
 	*	@param If arePoints is false, then params are p + u * lambda + v * mu, otherwise are points (R, S, T).
 	*/
 	Plane(Vect3d& p, Vect3d& u, Vect3d& v, bool arePoints);
+
+	Plane(Vect3d& p, Vect3d& u, Vect3d& v, Vect3d& w, bool arePoints);
 
 	/**
 	*	@brief Copy constructor.
@@ -133,5 +135,11 @@ public:
 
 
 	Vect3d reflectedPoint(Vect3d& v);
+
+
+	Vect3d getP1() { return _a; };
+	Vect3d getP2() { return _b; };
+	Vect3d getP3() { return _c; };
+	Vect3d getP4() { return _d; };
 };
 

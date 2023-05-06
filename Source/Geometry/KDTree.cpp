@@ -189,11 +189,30 @@ Plane KDTree::determinarPlanoDiv(int nivel, double coordenada, AABB limites) {
 
 	int eje = nivel % 3;
 
-	Vect3d v1 = Vect3d((2 - eje) * (1 - eje) * coordenada / 2 + eje * limites.getMax().getX(), eje * (2 - eje) * coordenada + (eje - 1) * limites.getMax().getY(), eje * (eje - 1) * coordenada / 2 + (2 - eje) * limites.getMax().getZ());
-	Vect3d v2 = Vect3d((2 - eje) * (1 - eje) * coordenada / 2 + eje * limites.getMax().getX(), eje * (2 - eje) * coordenada + (eje - 1) * limites.getMax().getY(), eje * (eje - 1) * coordenada / 2 + (2 - eje) * limites.getMin().getZ());
-	Vect3d v3 = Vect3d((2 - eje) * (1 - eje) * coordenada / 2 + eje * limites.getMin().getX(), eje * (2 - eje) * coordenada + (eje - 1) * limites.getMin().getY(), eje * (eje - 1) * coordenada / 2 + (2 - eje) * limites.getMax().getY());
+	Vect3d v1, v2, v3, v4;
 
-	return Plane(v1, v2, v3, true);
+	if (eje == 0) {
+		v1 = Vect3d(coordenada, limites.getMax().getY(), limites.getMax().getZ());
+		v2 = Vect3d(coordenada, limites.getMax().getY(), limites.getMin().getZ());
+		v3 = Vect3d(coordenada, limites.getMin().getY(), limites.getMin().getZ());
+		v4 = Vect3d(coordenada, limites.getMin().getY(), limites.getMax().getZ());
+	}
+	else if(eje == 1) {
+		v1 = Vect3d(limites.getMax().getX(), coordenada, limites.getMax().getZ());
+		v2 = Vect3d(limites.getMin().getX(), coordenada, limites.getMax().getZ());
+		v3 = Vect3d(limites.getMin().getX(), coordenada, limites.getMin().getZ());
+		v4 = Vect3d(limites.getMax().getX(), coordenada, limites.getMin().getZ());
+	}
+	else {
+		v1 = Vect3d(limites.getMax().getX(), limites.getMax().getY(), coordenada);
+		v2 = Vect3d(limites.getMin().getX(), limites.getMax().getY(), coordenada);
+		v3 = Vect3d(limites.getMin().getX(), limites.getMin().getY(), coordenada);
+		v4 = Vect3d(limites.getMax().getX(), limites.getMin().getY(), coordenada);
+	}
+
+	
+
+	return Plane(v1, v2, v3, v4, true);
 
 }
 

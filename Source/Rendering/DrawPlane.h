@@ -18,6 +18,7 @@
 
 #include "Model3D.h"
 #include "Plane.h"
+#include "AABB.h"
 
 namespace AlgGeom
 {
@@ -27,7 +28,9 @@ namespace AlgGeom
         Plane _plane;
 
     public:
+        DrawPlane();
         DrawPlane(Plane& plane);
+        void dibujaCortePlano(Plane& plane);
         DrawPlane(const DrawPlane& plane) = delete;
         virtual ~DrawPlane();
     };

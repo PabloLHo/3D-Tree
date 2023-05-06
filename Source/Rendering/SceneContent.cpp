@@ -20,7 +20,7 @@ void AlgGeom::SceneContent::buildScenario()
 
 
     int tam = 10;
-    //std::vector<Vect3d> points;
+    std::vector<Vect3d> points;
     //for (int i = 0; i < tam; i++) {
     //    Vect3d point(RandomUtilities::getUniformRandom(minBoundaries.x, maxBoundaries.x),
     //        RandomUtilities::getUniformRandom(minBoundaries.y, maxBoundaries.y), RandomUtilities::getUniformRandom(minBoundaries.z, maxBoundaries.z));
@@ -28,19 +28,33 @@ void AlgGeom::SceneContent::buildScenario()
     //    std::cout << "(" << point.getX() << ", " << point.getY() << ", " << point.getZ() << ")" << std::endl;
     //}
 
-    //PointCloud3d *nubeP = new PointCloud3d(points);
-    //this->addNewModel((new DrawPointCloud(*nubeP))->overrideModelName()->setPointColor(vec3(1,0,0)));
+    points.push_back(Vect3d(1,0.5,0.5));
+    points.push_back(Vect3d(-1,-0.5,-0.5));
+    points.push_back(Vect3d(1.3,0,1.5));
+    points.push_back(Vect3d(1.6,-1,-1.5));
+    points.push_back(Vect3d(-0.5,1,1.8));
+
+    PointCloud3d *nubeP = new PointCloud3d(points);
+    this->addNewModel((new DrawPointCloud(*nubeP))->overrideModelName()->setPointColor(vec3(1,0,0))->setPointSize(8));
 
 
-    //KDTree* arbol3D = new KDTree(nubeP);
+    KDTree* arbol3D = new KDTree(nubeP);
 
-    PointCloud* nubeP2 = new PointCloud(tam, maxBoundaries.x, maxBoundaries.y);
+    
+    planos = arbol3D->getPlanos();
 
-    this->addNewModel((new DrawPointCloud(*nubeP2))->overrideModelName()->setPointColor(vec3(1, 0, 0))->setPointSize(8));
+    //Representarlos directamente todos
+    //for (int i = 0; i < planos.size(); i++) {
+    //    this->addNewModel((new DrawPlane(planos[i]))->overrideModelName());
+    //}
 
-    KDTree* arbol2D = new KDTree(nubeP2);
+    //PointCloud* nubeP2 = new PointCloud(tam, maxBoundaries.x, maxBoundaries.y);
 
-    segmentos = arbol2D->getSegmentos();
+    //this->addNewModel((new DrawPointCloud(*nubeP2))->overrideModelName()->setPointColor(vec3(1, 0, 0))->setPointSize(8));
+
+    //KDTree* arbol2D = new KDTree(nubeP2);
+
+    //segmentos = arbol2D->getSegmentos();
 
     //Representarlos directamente todos
     //for (int i = 0; i < segmentos.size(); i++) {
@@ -109,7 +123,9 @@ void AlgGeom::SceneContent::construir2DTree() {
 void AlgGeom::SceneContent::construir3DTree() {
 
     if (avance3D < planos.size()) {
-        this->addNewModel((new DrawPlane(planos[avance3D]))->overrideModelName());
+        DrawPlane* plane = new DrawPlane();
+        plane->dibujaCortePlano(planos[avance3D]);
+        this->addNewModel((plane)->overrideModelName()->setTriangleColor(vec4(RandomUtilities::getUniformRandomColor(), 0.2)));
         avance3D++;
     }
     else
