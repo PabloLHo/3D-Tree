@@ -30,7 +30,7 @@ namespace AlgGeom
     public:
         DrawPlane();
         DrawPlane(Plane& plane);
-        void dibujaCortePlano(Plane& plane);
+        void dibujaPlanoKDTree(Plane& plane);
         DrawPlane(const DrawPlane& plane) = delete;
         virtual ~DrawPlane();
     };

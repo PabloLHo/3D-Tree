@@ -44,6 +44,8 @@ namespace AlgGeom
 		// Topology
 		bool							_activeRendering[VAO::NUM_IBOS];
 
+		int								_tam;
+
 		ApplicationState()
 		{
 			_backgroundColor = vec3(.6f);
@@ -62,6 +64,9 @@ namespace AlgGeom
 			_Id = vec3(1.0f);
 			_Is = vec3(1.0f);
 			_gamma = 1.3f;
+			_tam = 10;
 		}
+
+		
 	};
 }

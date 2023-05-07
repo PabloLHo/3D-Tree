@@ -45,7 +45,8 @@ void AlgGeom::InputManager::buildMoveRelatedBuffers()
 	_eventKey[Events::SCREENSHOT]		= ivec2(GLFW_KEY_K, GLFW_KEY_L);
 	_eventKey[Events::TILT]				= ivec2(GLFW_KEY_T);
 	_eventKey[Events::TRUCK]			= ivec2(GLFW_KEY_D, GLFW_KEY_A);
-	_eventKey[Events::KDTREE]			= ivec2(GLFW_KEY_RIGHT_BRACKET, GLFW_KEY_SLASH);
+	_eventKey[Events::FORMATOKD]		= ivec2(GLFW_KEY_8, GLFW_KEY_9);
+	_eventKey[Events::KDTREE]			= ivec2(GLFW_KEY_RIGHT_BRACKET, GLFW_KEY_C);
 
 
 
@@ -171,11 +172,19 @@ void AlgGeom::InputManager::processPressedKeyEvent(const int key, const int mods
 	}
 	else if (key == _eventKey[Events::KDTREE][0])
 	{
-		Renderer::getInstance()->getEscena()->construir2DTree();
+		Renderer::getInstance()->getEscena()->construirKDTree(false);
 	}
 	else if (key == _eventKey[Events::KDTREE][1])
 	{
-		Renderer::getInstance()->getEscena()->construir3DTree();
+		Renderer::getInstance()->getEscena()->construirKDTree(true);
+	}
+	else if (key == _eventKey[Events::FORMATOKD][0])
+	{
+		Renderer::getInstance()->getEscena()->randomizarNube2D(getApplicationState()->_tam);
+	}
+	else if (key == _eventKey[Events::FORMATOKD][1])
+	{
+		Renderer::getInstance()->getEscena()->randomizarNube3D(getApplicationState()->_tam);
 	}
 }
 

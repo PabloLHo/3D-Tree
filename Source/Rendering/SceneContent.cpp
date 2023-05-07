@@ -16,18 +16,9 @@
 
 void AlgGeom::SceneContent::buildScenario()
 {
-    vec3 minBoundaries = vec3(-3.0f, -.4, -3.0f), maxBoundaries = vec3(-minBoundaries);
-
-
     int tam = 10;
-    std::vector<Vect3d> points;
-    //for (int i = 0; i < tam; i++) {
-    //    Vect3d point(RandomUtilities::getUniformRandom(minBoundaries.x, maxBoundaries.x),
-    //        RandomUtilities::getUniformRandom(minBoundaries.y, maxBoundaries.y), RandomUtilities::getUniformRandom(minBoundaries.z, maxBoundaries.z));
-    //    points.push_back(point);
-    //    std::cout << "(" << point.getX() << ", " << point.getY() << ", " << point.getZ() << ")" << std::endl;
-    //}
 
+    std::vector<Vect3d> points;
     points.push_back(Vect3d(1,0.5,0.5));
     points.push_back(Vect3d(-1,-0.5,-0.5));
     points.push_back(Vect3d(1.3,0,1.5));
@@ -35,31 +26,12 @@ void AlgGeom::SceneContent::buildScenario()
     points.push_back(Vect3d(-0.5,1,1.8));
 
     PointCloud3d *nubeP = new PointCloud3d(points);
-    this->addNewModel((new DrawPointCloud(*nubeP))->overrideModelName()->setPointColor(vec3(1,0,0))->setPointSize(8));
+    this->addNewModel((new DrawPointCloud(*nubeP))->overrideModelName()->setPointColor(vec3(0,1,0))->setPointSize(8));
 
 
     KDTree* arbol3D = new KDTree(nubeP);
 
-    
     planos = arbol3D->getPlanos();
-
-    //Representarlos directamente todos
-    //for (int i = 0; i < planos.size(); i++) {
-    //    this->addNewModel((new DrawPlane(planos[i]))->overrideModelName());
-    //}
-
-    //PointCloud* nubeP2 = new PointCloud(tam, maxBoundaries.x, maxBoundaries.y);
-
-    //this->addNewModel((new DrawPointCloud(*nubeP2))->overrideModelName()->setPointColor(vec3(1, 0, 0))->setPointSize(8));
-
-    //KDTree* arbol2D = new KDTree(nubeP2);
-
-    //segmentos = arbol2D->getSegmentos();
-
-    //Representarlos directamente todos
-    //for (int i = 0; i < segmentos.size(); i++) {
-    //    this->addNewModel((new DrawSegment(segmentos[i]))->overrideModelName());
-    //}
 
 
 }
@@ -109,26 +81,99 @@ AlgGeom::Model3D* AlgGeom::SceneContent::getModel(Model3D::Component* component)
 	return nullptr;
 }
 
-void AlgGeom::SceneContent::construir2DTree() {
+void AlgGeom::SceneContent::construirKDTree(bool entero) {
 
-    if (avance2D < segmentos.size()) {
-        this->addNewModel((new DrawSegment(segmentos[avance2D]))->overrideModelName());
-        avance2D++;
+    if (planos.size() > 0) {
+        construir3DTree(entero);
     }
-    else
-        std::cout << "Fin construccion 2DTree" << std::endl;
+    else {
+        construir2DTree(entero);
+    }
+
 
 }
 
-void AlgGeom::SceneContent::construir3DTree() {
+void AlgGeom::SceneContent::construir2DTree(bool entero) {
 
-    if (avance3D < planos.size()) {
-        DrawPlane* plane = new DrawPlane();
-        plane->dibujaCortePlano(planos[avance3D]);
-        this->addNewModel((plane)->overrideModelName()->setTriangleColor(vec4(RandomUtilities::getUniformRandomColor(), 0.2)));
-        avance3D++;
+    if (entero) {
+        for (int i = avance2D; i < segmentos.size(); i++) {
+            this->addNewModel((new DrawSegment(segmentos[avance2D]))->overrideModelName());
+            avance2D++;
+        }
     }
-    else
-        std::cout << "Fin construccion 3DTree" << std::endl;
+    else {
+        if (avance2D < segmentos.size()) {
+            this->addNewModel((new DrawSegment(segmentos[avance2D]))->overrideModelName());
+            avance2D++;
+        }
+        else
+            std::cout << "Fin proceso 2DTree" << std::endl;
+    }
+
+}
+
+void AlgGeom::SceneContent::construir3DTree(bool entero) {
+
+    if (entero) {
+        for (int i = avance3D; i < segmentos.size(); i++) {
+            DrawPlane* plane = new DrawPlane();
+            plane->dibujaPlanoKDTree(planos[avance3D]);
+            this->addNewModel((plane)->overrideModelName()->setTriangleColor(vec4(RandomUtilities::getUniformRandomColor(), 0.2)));
+            avance3D++;
+        }
+    }
+    else {
+        if (avance3D < planos.size()) {
+            DrawPlane* plane = new DrawPlane();
+            plane->dibujaPlanoKDTree(planos[avance3D]);
+            this->addNewModel((plane)->overrideModelName()->setTriangleColor(vec4(RandomUtilities::getUniformRandomColor(), 0.2)));
+            avance3D++;
+        }
+        else
+            std::cout << "Fin proceso 3DTree" << std::endl;
+    }
+
+
+}
+
+void AlgGeom::SceneContent::randomizarNube2D(int tam) {
+
+    avance2D = 0;
+
+    this->planos.clear();
+
+    this->_model.clear();
+
+    PointCloud* nubeP2 = new PointCloud(tam, maxBoundaries.x, maxBoundaries.y);
+
+    this->addNewModel((new DrawPointCloud(*nubeP2))->overrideModelName()->setPointColor(vec3(1, 0, 0))->setPointSize(8));
+
+    KDTree* arbol2D = new KDTree(nubeP2);
+
+    segmentos = arbol2D->getSegmentos();
+
+}
+
+void AlgGeom::SceneContent::randomizarNube3D(int tam) {
+
+    avance3D = 0;
+
+    this->segmentos.clear();
+
+    this->_model.clear();
+
+    std::vector<Vect3d> points;
+    for (int i = 0; i < tam; i++) {
+        Vect3d point(RandomUtilities::getUniformRandom(minBoundaries.x, maxBoundaries.x),
+            RandomUtilities::getUniformRandom(minBoundaries.y, maxBoundaries.y), RandomUtilities::getUniformRandom(minBoundaries.z, maxBoundaries.z));
+        points.push_back(point);
+    }
+
+    PointCloud3d* nubeP = new PointCloud3d(points);
+    this->addNewModel((new DrawPointCloud(*nubeP))->overrideModelName()->setPointColor(vec3(0, 1, 0))->setPointSize(8));
+
+    KDTree* arbol3D = new KDTree(nubeP);
+
+    planos = arbol3D->getPlanos();
 
 }

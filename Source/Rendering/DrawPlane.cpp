@@ -36,7 +36,7 @@ AlgGeom::DrawPlane::DrawPlane(Plane& plane) : Model3D(), _plane(plane)
     this->buildVao(component);
 }
 
-void AlgGeom::DrawPlane::dibujaCortePlano(Plane& plane)
+void AlgGeom::DrawPlane::dibujaPlanoKDTree(Plane& plane)
 {
     size_t numVertices = 4;
     std::vector<Vect3d> vertices;
@@ -47,18 +47,14 @@ void AlgGeom::DrawPlane::dibujaCortePlano(Plane& plane)
     vertices.push_back(Vect3d(plane.getP3()));
     vertices.push_back(Vect3d(plane.getP4()));
 
-    std::cout << std::endl << "Plano: (" << plane.getP1().getX() << ", " << plane.getP1().getY() << ", " << plane.getP1().getZ() << ")" << std::endl << "(" << plane.getP2().getX() << ", " << plane.getP2().getY() << ", " << plane.getP2().getZ() << ")" << std::endl <<
-        "(" << plane.getP3().getX() << ", " << plane.getP3().getY() << ", " << plane.getP3().getZ() << ")" << std::endl << "(" << plane.getP4().getX() << ", " << plane.getP4().getY() << ", " << plane.getP4().getZ() << ")" << std::endl;
-
-
     for (unsigned vertexIdx = 0; vertexIdx < numVertices; vertexIdx++) {
 
         Vect3d point = vertices[vertexIdx];
+        component->_vertices.push_back(VAO::Vertex{ vec3(point.getX(), point.getY(), point.getZ())});
 
-
-        component->_vertices.push_back(VAO::Vertex{ vec3(point.getX(), point.getY(), point.getZ()),  });
-        component->_indices[VAO::IBO_TRIANGLE].insert(component->_indices[VAO::IBO_TRIANGLE].end(), { vertexIdx, static_cast<unsigned int>((vertexIdx + 1) % numVertices), static_cast<unsigned int>((vertexIdx + 2) % numVertices), RESTART_PRIMITIVE_INDEX });
     }
+
+    component->_indices[VAO::IBO_TRIANGLE].insert(component->_indices[VAO::IBO_TRIANGLE].end(), { 0,1,3, RESTART_PRIMITIVE_INDEX, 1,2,3, RESTART_PRIMITIVE_INDEX });
 
     this->_components.push_back(std::unique_ptr<Component>(component));
     this->buildVao(component);

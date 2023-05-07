@@ -9,7 +9,7 @@ PointCloud::PointCloud()
 PointCloud::PointCloud(int size, float max_x, float max_y)
 {
 	for (int i = 0; i < size; i++) {
-		this->_points.push_back(Point(RandomUtilities::getUniformRandom(0, max_x), RandomUtilities::getUniformRandom(0, max_y)));
+		this->_points.push_back(Point(RandomUtilities::getUniformRandom(-max_x, max_x), RandomUtilities::getUniformRandom(-max_y, max_y)));
 	}
 }
 

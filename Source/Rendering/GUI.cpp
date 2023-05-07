@@ -171,6 +171,9 @@ void AlgGeom::GUI::render(SceneContent* sceneContent)
 			case MenuButtons::LIGHT:
 				this->showLightMenu(sceneContent);
 				break;
+			case MenuButtons::KDTREE:
+				this->showKDTreeMenu(sceneContent);
+				break;
 			case MenuButtons::SCREENSHOT:
 				this->showScreenshotMenu(sceneContent);
 				break;
@@ -189,6 +192,7 @@ void AlgGeom::GUI::render(SceneContent* sceneContent)
 			ImGui::MenuItem(ICON_FA_CAMERA_RETRO "Camera", NULL, &_showMenuButtons[MenuButtons::CAMERA]);
 			ImGui::MenuItem(ICON_FA_LIGHTBULB "Light", NULL, &_showMenuButtons[MenuButtons::LIGHT]);
 			ImGui::MenuItem(ICON_FA_CAMERA "Screenshot", NULL, &_showMenuButtons[MenuButtons::SCREENSHOT]);
+			ImGui::MenuItem(ICON_FA_SITEMAP "KDTREE", NULL, &_showMenuButtons[MenuButtons::KDTREE]);
 			ImGui::EndMenu();
 		}
 
@@ -429,6 +433,34 @@ void AlgGeom::GUI::showScreenshotMenu(SceneContent* sceneContent)
 			std::string filename = _appState->_screenshotFilenameBuffer;
 			filename = fixName(filename, "RGB", ".png");
 			InputManager::getInstance()->pushScreenshotEvent(ScreenshotListener::ScreenshotEvent{ ScreenshotListener::RGBA });
+		}
+	}
+
+	ImGui::End();
+}
+
+void AlgGeom::GUI::showKDTreeMenu(SceneContent* sceneContent)
+{
+
+	ImGui::SetNextWindowSize(ImVec2(400, 175), ImGuiCond_Appearing);
+	if (ImGui::Begin("KDTree management", &_showMenuButtons[KDTREE]))
+	{
+		ImGui::SliderInt("Tam nube de puntos", &_appState->_tam, 2, 100);
+		ImGui::Separator();
+
+		ImGui::Text("3D-Tree");
+		ImGui::Separator();
+
+		if (ImGui::Button("Genera nube 3D")) {
+			sceneContent->randomizarNube3D(_appState->_tam);
+		}
+
+		GuiUtilities::leaveSpace(2);
+		ImGui::Text("2D-Tree");
+		ImGui::Separator();
+
+		if (ImGui::Button("Genera nube 2D")) {
+			sceneContent->randomizarNube2D(_appState->_tam);
 		}
 	}
 

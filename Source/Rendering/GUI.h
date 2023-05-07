@@ -29,7 +29,7 @@ namespace AlgGeom
 		friend class Singleton<GUI>;
 
 	protected:
-		enum MenuButtons { RENDERING, MODELS, CAMERA, LIGHT, SCREENSHOT, NUM_GUI_MENU_BUTTONS };
+		enum MenuButtons { RENDERING, MODELS, CAMERA, LIGHT, SCREENSHOT, KDTREE, NUM_GUI_MENU_BUTTONS };
 		enum FileDialog { OPEN_MESH, NONE };
 		inline static std::string DEFAULT_DIRECTORY = ".";
 		inline static std::vector<std::string> FILE_DIALOG_TEXT { "Choose Model" };
@@ -58,6 +58,7 @@ namespace AlgGeom
 		void showModelMenu(SceneContent* sceneContent);
 		void showRenderingMenu(SceneContent* sceneContent);
 		void showScreenshotMenu(SceneContent* sceneContent);
+		void showKDTreeMenu(SceneContent* sceneContent);
 
 	protected:
 		GUI();

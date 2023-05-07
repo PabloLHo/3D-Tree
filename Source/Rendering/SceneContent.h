@@ -28,6 +28,7 @@ namespace AlgGeom
 	class SceneContent
 	{
 	public:
+		vec3 minBoundaries = vec3(-3.0f, -.4, -3.0f), maxBoundaries = vec3(-minBoundaries);
 		std::vector<std::unique_ptr<Camera>>	_camera;
 		std::vector<std::unique_ptr<Model3D>>	_model;
 
@@ -45,8 +46,14 @@ namespace AlgGeom
 		void buildScenario();
 		Model3D* getModel(Model3D::Component* component);
 
-		void construir2DTree();
-		void construir3DTree();
+		void construirKDTree(bool entero);
+
+		void randomizarNube3D(int tam);
+		void randomizarNube2D(int tam);
+
+	protected:
+		void construir2DTree(bool entero);
+		void construir3DTree(bool entero);
 
 	};
 }
