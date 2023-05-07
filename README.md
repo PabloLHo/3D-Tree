@@ -21,3 +21,31 @@ ejecutable.sh
 
 ## Content
 
+
+## User Guide
+Controls (Keys)
+* 0: 
+* 1:
+* 2:
+* 8:
+* 9:
+* +: 
+
+Camera
+* W:
+* A:
+* S:
+* D:
+
+* X:
+* Y:
+* Z:
+* Scroll: 
+
+Menu
+* Rendering
+* Models
+* Camera
+* Light
+* Screenshot
+* KDTREE
