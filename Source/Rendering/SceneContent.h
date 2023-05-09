@@ -34,8 +34,11 @@ namespace AlgGeom
 
 		int avance2D = 0;
 		int avance3D = 0;
-		std::vector<SegmentLine> segmentos;
-		std::vector<Plane> planos;
+		int maxNivel = 0;
+		std::vector<std::pair<SegmentLine, int>> segmentos;
+		std::vector<std::pair<Plane, int>> planos;
+
+		std::unordered_map<int, vec3> colores;
 
 		SceneContent();
 		virtual ~SceneContent();

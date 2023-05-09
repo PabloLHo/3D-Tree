@@ -85,10 +85,10 @@ vec3 getDiffuseAndSpecular(vec3 fragKad, vec3 fragKs, vec3 fragNormal, float met
 	const vec3 v = normalize(-position);
 	const vec3 h = normalize(v + l);						// Halfway vector
 
-	const float dotLN = clamp(dot(l, n), -1.0f, 1.0f);      // Prevents Nan values from acos
-	const float dotHN = dot(h, n);
-	const float dotHV = dot(h, v);
-	const float dotNV = dot(n, v);
+	const float dotLN = abs(clamp(dot(l, n), -1.0f, 1.0f));      // Prevents Nan values from acos
+	const float dotHN = abs(dot(h, n));
+	const float dotHV = abs(dot(h, v));
+	const float dotNV = abs(dot(n, v));
 
 	vec3 F0 = vec3(.04);
 	F0 = mix(F0, fragKad, metallic);

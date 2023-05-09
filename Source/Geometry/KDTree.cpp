@@ -27,6 +27,9 @@ KDTree::~KDTree()
 }
 
 Nodo3d KDTree::construir3DTree(std::vector<Vect3d> puntos, int nivel, AABB limites) {
+	
+	if (nivel > maxNivel)
+		maxNivel = nivel;
 
 	if (puntos.size() > 1) {
 
@@ -72,7 +75,7 @@ Nodo3d KDTree::construir3DTree(std::vector<Vect3d> puntos, int nivel, AABB limit
 
 		Plane p = determinarPlanoDiv(nivel, coordenada, limites);
 
-		planos.push_back(p);
+		planos.push_back(std::pair(p,nivel));
 
 		Nodo3dIzq = construir3DTree(l1, nivel + 1, izq);
 		Nodo3dDrch = construir3DTree(l2, nivel + 1, drch);
@@ -85,6 +88,9 @@ Nodo3d KDTree::construir3DTree(std::vector<Vect3d> puntos, int nivel, AABB limit
 }
 
 Nodo2d KDTree::construir2DTree(std::vector<Point> puntos, int nivel, AABB limites) {
+
+	if (nivel > maxNivel)
+		maxNivel = nivel;
 
 	if (puntos.size() > 1) {
 
@@ -122,7 +128,7 @@ Nodo2d KDTree::construir2DTree(std::vector<Point> puntos, int nivel, AABB limite
 		std::copy(puntos.begin() + mitad + 1, puntos.end(), back_inserter(l2));
 
 		SegmentLine s = determinarSegmentoDiv(nivel, coordenada, limites);
-		segmentos.push_back(s);
+		segmentos.push_back(std::pair(s,nivel));
 
 
 		nodoIzq = construir2DTree(l1, nivel + 1, izq);

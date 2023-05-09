@@ -15,8 +15,10 @@ class KDTree{
 		Nodo3d raiz3D;
 		Nodo2d raiz2D;
 
-		std::vector<Plane> planos;
-		std::vector<SegmentLine> segmentos;
+		int maxNivel;
+
+		std::vector<std::pair<Plane,int>> planos;
+		std::vector<std::pair<SegmentLine, int>> segmentos;
 
 	public:
 		/**
@@ -55,8 +57,8 @@ class KDTree{
 		Plane determinarPlanoDiv(int nivel, double coordenada, AABB limite);
 		SegmentLine determinarSegmentoDiv(int nivel, double coordenada, AABB limites);
 
-		std::vector<Plane> getPlanos() { return planos; };
-		std::vector<SegmentLine> getSegmentos() { return segmentos; };
+		std::vector<std::pair<Plane,int>> getPlanos() { return planos; };
+		std::vector<std::pair<SegmentLine, int>> getSegmentos() { return segmentos; };
 
 		Nodo2d* buscarPunto(Point p);
 		Nodo3d* buscarPunto(Vect3d p);
@@ -66,5 +68,7 @@ class KDTree{
 
 		void eliminarPunto(Point p);
 		void eliminarPunto(Vect3d p);
+
+		int getMax() { return maxNivel; };
 
 };

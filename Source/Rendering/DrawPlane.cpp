@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "DrawPlane.h"
+#include "Triangle3d.h"
 
 AlgGeom::DrawPlane::DrawPlane() {
 
@@ -40,6 +41,7 @@ void AlgGeom::DrawPlane::dibujaPlanoKDTree(Plane& plane)
 {
     size_t numVertices = 4;
     std::vector<Vect3d> vertices;
+    std::vector<vec3> normales;
     Component* component = new Component;
 
     vertices.push_back(Vect3d(plane.getP1()));
@@ -47,10 +49,17 @@ void AlgGeom::DrawPlane::dibujaPlanoKDTree(Plane& plane)
     vertices.push_back(Vect3d(plane.getP3()));
     vertices.push_back(Vect3d(plane.getP4()));
 
+    Triangle3d triangulo1(plane.getP1().getX(), plane.getP1().getY(), plane.getP1().getZ(), plane.getP2().getX(), 
+        plane.getP2().getY(), plane.getP2().getZ(), plane.getP4().getX(), plane.getP4().getY(), plane.getP4().getZ());
+
+
+
     for (unsigned vertexIdx = 0; vertexIdx < numVertices; vertexIdx++) {
 
         Vect3d point = vertices[vertexIdx];
-        component->_vertices.push_back(VAO::Vertex{ vec3(point.getX(), point.getY(), point.getZ())});
+        vec3 normal = vec3(triangulo1.normal().getX(), triangulo1.normal().getY(), triangulo1.normal().getZ());
+
+        component->_vertices.push_back(VAO::Vertex{ vec3(point.getX(), point.getY(), point.getZ()), normal});
 
     }
 
