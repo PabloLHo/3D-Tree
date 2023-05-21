@@ -46,7 +46,7 @@ void AlgGeom::SceneContent::buildScenario()
 void AlgGeom::SceneContent::buildCamera(uint16_t width, uint16_t height)
 {
     Camera* camera = new Camera(width, height, false);
-    camera->setPosition(vec3(-10.0f, 10.0f, 10.0f));
+    camera->setPosition(vec3(-8.0f, 8.0f, 8.0f));
     camera->setLookAt(vec3(.0f, .0f, 0.0f));
     camera->saveCamera();
 
@@ -183,7 +183,7 @@ void AlgGeom::SceneContent::randomizarNube2D(int tam) {
 
 void AlgGeom::SceneContent::randomizarNube3D(int tam) {
 
-    this->_camera[0]->setPosition(vec3(-10.0f, 10.0f, 10.0f));
+    this->_camera[0]->setPosition(vec3(-8.0f, 8.0f, 8.0f));
 
     avance3D = 0;
 
