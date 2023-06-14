@@ -54,24 +54,35 @@ Menu
 * Light: Allows us to change the components of the light as well as its position.
 * Screenshot: Allows us to take a screenshot of the scene.
 * KDTREE: Allows us to randomise 2D and 3D point clouds as well as determine the number of points that make them up.
-![Menu KD-Tree](Imagenes/Menu-KDTree.png)
+<p align="center">
+  <img src="Imagenes/Menu-KDTree.png" alt="Menu KD-Tree"/>
+</p>
 
 
 ## Execution examples
 
 ### 2D-Tree and Point cloud
 First we will present an example of the creation and visualisation of a **2D point cloud**.
-![2D point cloud](Imagenes/PC2D.png)
+<p align="center">
+  <img src="Imagenes/PC2D.png" alt="2D point cloud"/>
+</p>
 
 
 After this is displayed on the scene, we can generate the associated KD-Tree using the step-by-step format or a direct and complete creation, the result is shown below.
-![2D-Tree](Imagenes/2D-Tree.png)
+<p align="center">
+  <img src="Imagenes/2D-Tree.png" alt="2D-Tree"/>
+</p>
 
 ### 3D-Tree and Point cloud
 The most complex case of this data structure will be represented by the **3D-Tree**, whose point cloud is represented in green in the programme and if we do not find inside and move around we can observe the depth of the points.
-![3D point cloud](Imagenes/PC3D.png)
+<p align="center">
+  <img src="Imagenes/PC3D.png" alt="3D point cloud"/>
+</p>
 
 
 As in the 2D case we apply the KD-Tree visualisation processes and observe the following result.
-![3D-Tree](Imagenes/3D-Tree.png)
+<p align="center">
+  <img src="Imagenes/3D-Tree.png" alt="3D-Tree"/>
+</p>
+
 This result is a bit more complex to see as it requires more movement around the scene to see everything correctly.
