@@ -19,33 +19,36 @@ cd KD-Tree/Ejecutable
 ejecutable.sh
 ```
 
-## Content
-
-
 ## User Guide
 Controls (Keys)
-* 0: 
-* 1:
-* 2:
-* 8:
-* 9:
-* +: 
+* 8: Randomize 2D cloud
+* 9: Randomize 3D cloud
+* +: Step by step kd tree visualization
+* C: Full kd tree visualization
 
 Camera
-* W:
-* A:
-* S:
-* D:
+* W: Move forward
+* A: Move left
+* S: Move backwards
+* D: Move to the right
 
-* X:
-* Y:
-* Z:
-* Scroll: 
+It is necessary to hold down right click with these keys to move.
+
+* X: Camera orbit movement, Y-axis rotation
+* Y: Camera orbit movement, Z-axis rotation
+* B: Reset camera to a home position
+* Scroll: Zoom
 
 Menu
-* Rendering
-* Models
-* Camera
-* Light
-* Screenshot
-* KDTREE
+* Rendering: Allows us to determine the types of topoligies to be observed as well as to determine the background of the scene.
+* Models: Allows us to activate and deactivate the visualisation of the models in the scene as well as to edit them.
+* Camera: Allows us to switch between the cameras available in the scene.
+* Light: Allows us to change the components of the light as well as its position.
+* Screenshot: Allows us to take a screenshot of the scene.
+* KDTREE: Allows us to randomise 2D and 3D point clouds as well as determine the number of points that make them up.
+
+## Execution examples
+![2D point cloud](url completa de la imagen)
+![2D-Tree](url completa de la imagen)
+![3D point cloud](url completa de la imagen)
+![3D-Tree](url completa de la imagen)
