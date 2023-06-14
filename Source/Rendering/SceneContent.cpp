@@ -32,11 +32,17 @@ void AlgGeom::SceneContent::buildScenario()
     KDTree* arbol3D = new KDTree(nubeP);
 
     planos = arbol3D->getPlanos();
-    maxNivel = arbol3D->getMax();
 
-    for (int i = 0; i <= maxNivel; i++) {
-        colores.insert(std::pair(i, vec3(RandomUtilities::getUniformRandomColor())));
-    }
+    colores.insert(std::pair(0, vec3(1, 0, 0)));
+    colores.insert(std::pair(1, vec3(0, 1, 0)));
+    colores.insert(std::pair(2, vec3(0, 0, 1)));
+    colores.insert(std::pair(3, vec3(1, 1, 0)));
+    colores.insert(std::pair(4, vec3(0, 1, 1)));
+    colores.insert(std::pair(5, vec3(1, 0, 1)));
+    colores.insert(std::pair(6, vec3(1, 0.65, 0)));
+    colores.insert(std::pair(7, vec3(0.93, 0.51, 0.93)));
+    colores.insert(std::pair(8, vec3(0.2, 0.8, 0.2)));
+    colores.insert(std::pair(9, vec3(0.25, 0.87, 0.81)));
 
     delete nubeP;
     delete arbol3D;
@@ -160,7 +166,6 @@ void AlgGeom::SceneContent::randomizarNube2D(int tam) {
 
     this->_model.clear();
 
-    this->colores.clear();
 
     PointCloud* nubeP2 = new PointCloud(tam, maxBoundaries.x, maxBoundaries.y);
 
@@ -169,13 +174,6 @@ void AlgGeom::SceneContent::randomizarNube2D(int tam) {
     KDTree* arbol2D = new KDTree(nubeP2);
 
     segmentos = arbol2D->getSegmentos();
-
-    maxNivel = arbol2D->getMax();
-
-    for (int i = 0; i <= maxNivel; i++) {
-        vec3 color = RandomUtilities::getUniformRandomColor();
-        colores.insert(std::pair(i, color));
-    }
 
     delete nubeP2;
     delete arbol2D;
@@ -191,7 +189,6 @@ void AlgGeom::SceneContent::randomizarNube3D(int tam) {
 
     this->_model.clear();
 
-    this->colores.clear();
 
     std::vector<Vect3d> points;
     for (int i = 0; i < tam; i++) {
@@ -206,13 +203,6 @@ void AlgGeom::SceneContent::randomizarNube3D(int tam) {
     KDTree* arbol3D = new KDTree(nubeP);
 
     planos = arbol3D->getPlanos();
-
-    maxNivel = arbol3D->getMax();
-
-    for (int i = 0; i <= maxNivel; i++) {
-        vec3 color = RandomUtilities::getUniformRandomColor();
-        colores.insert(std::pair(i, color));
-    }
 
 
     delete arbol3D;
