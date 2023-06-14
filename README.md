@@ -48,7 +48,7 @@ Menu
 * KDTREE: Allows us to randomise 2D and 3D point clouds as well as determine the number of points that make them up.
 
 ## Execution examples
-![2D point cloud](url completa de la imagen)
-![2D-Tree](url completa de la imagen)
-![3D point cloud](url completa de la imagen)
-![3D-Tree](url completa de la imagen)
+![2D point cloud](Imagenes/PC2D.png)
+![2D-Tree](Imagenes/2D-Tree.png)
+![3D point cloud](Imagenes/PC3D.png)
+![3D-Tree](Imagenes/3D-Tree.png)
