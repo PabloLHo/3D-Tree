@@ -7,14 +7,14 @@ If desired, the code can be executed locally. To do so, just execute the followi
 
 For a Windows operating system
 ```bash
-gh repo clone PabloLH0/KD-Tree
+gh repo clone PabloLHo/KD-Tree
 cd KD-Tree/Ejecutable
 ejecutable.bat
 ```
 
 For a Linux operating system
 ```bash
-gh repo clone PabloLH0/KD-Tree
+gh repo clone PabloLHo/KD-Tree
 cd KD-Tree/Ejecutable
 ejecutable.sh
 ```
